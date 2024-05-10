@@ -114,3 +114,19 @@ footer {
         padding: 3vh 6vw;
     }
 }
+
+@media screen and (max-width: 480px) {
+    header, nav, main, .box, footer {
+        padding: 5vw;
+    }
+    
+    main {
+        grid-template-columns: repeat(auto-fill, minmax(80vw, 1fr));
+        grid-gap: 5vw;
+    }
+    
+    .box {
+        border-radius: 5vw;
+        box-shadow: 0 5vw 10vw rgba(0, 0, 0, 0.1);
+    }
+}

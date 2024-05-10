@@ -4,12 +4,13 @@ body {
     padding: 0;
     color: #333;
     background-color: #f8f8f8;
+    height: 100vh;
 }
 
 header {
     background-color: #35bfc4;
     color: #000000;
-    padding: 1px;
+    padding: 2vh 4vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +19,7 @@ header {
 nav {
     background-color: #444;
     color: #fff;
-    padding: 10px;
+    padding: 2vh 4vw;
     text-align: center;
 }
 
@@ -30,7 +31,7 @@ nav ul {
 }
 
 nav ul li {
-    margin-right: 10px;
+    margin-right: 2vw;
 }
 
 nav ul li a {
@@ -40,29 +41,76 @@ nav ul li a {
 
 main {
     display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-    grid-gap: 20px; 
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    grid-gap: 2vh 4vw;
+    padding: 2vh 4vw;
 }
 
 .box {
     background-color: #fff;
+    border-radius: 2vh;
+    padding: 2vh 4vw;
+    box-shadow: 0 2vh 4vw rgba(0, 0, 0, 0.1);
+}
+
+.chart {
+    height: 200px;
+    width: 100%;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f2f2f2;
+    position: relative;
+  }
+
+.chart::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+.chart:hover::before {
+    opacity: 1;
   }
 
 footer {
     background-color: #35bfc4;
     color: #000000;
-    padding: 10px;
+    padding: 2vh 4vw;
     text-align: center;
     display: flex; 
     justify-content: center; 
 }
 
 @media screen and (max-width: 768px) {
+    header {
+        padding: 3vh 6vw;
+    }
+
+    nav {
+        padding: 3vh 6vw;
+    }
+
     main {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+        grid-template-columns: repeat(auto-fill, minmax(30vw, 1fr));
+        grid-gap: 3vh 6vw;
+        padding: 3vh 6vw;
+    }
+
+    .box {
+        padding: 3vh 6vw;
+        border-radius: 3vh;
+        box-shadow: 0 3vh 6vw rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        padding: 3vh 6vw;
     }
 }

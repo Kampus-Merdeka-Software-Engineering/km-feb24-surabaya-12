@@ -39,7 +39,11 @@ nav ul li a {
     text-decoration: none;
 }
 
-main {
+main .container_form .table #tasklist li{
+    list-style-type: none;
+}
+
+main .container_box {
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
     grid-gap: 2vh 4vw;
@@ -125,6 +129,12 @@ footer {
         grid-gap: 5vw;
     }
     
+    .box {
+        border-radius: 5vw;
+        box-shadow: 0 5vw 10vw rgba(0, 0, 0, 0.1);
+    }
+}
+
     .box {
         border-radius: 5vw;
         box-shadow: 0 5vw 10vw rgba(0, 0, 0, 0.1);

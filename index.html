@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
     <header>
         <div class="header">
             <h1>NYC Property Sales | Borough 1</h1>
@@ -22,56 +21,73 @@
     </nav>
 
     <main>
-        <section class="box">
-            <h2>Monthly Sales</h2>
-            <div class="chart" id="monthly-sales-chart" data-tooltip=" Displays the distribution of montly sales"></div>
-        </section>
+        <div class="container_form">
+            <div class="form_input">
+                <h1>INPUT DATA</h1>
+                <input id="DataBuilding" name="DataBuilding"></input>
+                <button onclick="submit()">simpan</button>
+            </div>
+            <div class="table">
+                <ul id="tasklist">
+                    <li></li>
+                </ul>
+            </div>
+        </div>
 
-        <section class="box">
-            <h2>Total Revenue Monthly</h2>
-            <div class="chart" id="total-revenue-monthly" data-tooltip="Displays the distribution of total revenue monthly"></div>
-        </section>
 
-        <section class="box">
-            <h2>Best-selling Building Class</h2>
-            <div class="chart" id="best-selling-building-class" data-tooltip="Displays the distribution of best selling building class"></div>
-        </section>
+        <div class="container_box">
+            <section class="box">
+                <h2>Monthly Sales</h2>
+                <div class="chart" id="monthly-sales-chart" data-tooltip=" Displays the distribution of montly sales"></div>
+            </section>
 
-        <section class="box">
-            <h2>Average Sales by Neighborhood</h2>
-            <div class="chart" id="average-sales-by-neighborhood" data-tooltip="Displays the distribution of average sales by neighborhood"></div>
-        </section>
+            <section class="box">
+                <h2>Total Revenue Monthly</h2>
+                <div class="chart" id="total-revenue-monthly" data-tooltip="Displays the distribution of total revenue monthly"></div>
+            </section>
 
-        <section class="box">
-            <h2>Neighborhood Sales</h2>
-            <div class="chart" id="neighborhood-sales" data-tooltip="Displays the distribution of neighborhood sales"></div>
-        </section>
-        
-        <section class="box">
-            <h2>Total Revenue by Neighborhood</h2>
-            <div class="chart" id="total-revenue-by-neighborhood" data-tooltip="Displays the distribution of total revenue by neighborhood"></div>
-        </section>
+            <section class="box">
+                <h2>Best-selling Building Class</h2>
+                <div class="chart" id="best-selling-building-class" data-tooltip="Displays the distribution of best selling building class"></div>
+            </section>
 
-        <section class="box">
-            <h2>Filter Data</h2>
-            <form id="filterForm">
-                <label for="startDate">Start Date:</label><br>
-                <input type="date" id="startDate" name="startDate"><br>
-                <label for="endDate">End Date:</label><br>
-                <input type="date" id="endDate" name="endDate"><br>
-                <label for="neighborhood">Neighborhood:</label><br>
-                <select id="neighborhood" name="neighborhood">
-                    <option value="neighborhood1">Neighborhood 1</option>
-                    <option value="neighborhood2">Neighborhood 2</option>
-                    <option value="neighborhood3">Neighborhood 3</option>
-                </select><br><br>
-                <button type="submit">Apply Filters</button>
-            </form>
-        </section>
+            <section class="box">
+                <h2>Average Sales by Neighborhood</h2>
+                <div class="chart" id="average-sales-by-neighborhood" data-tooltip="Displays the distribution of average sales by neighborhood"></div>
+            </section>
+
+            <section class="box">
+                <h2>Neighborhood Sales</h2>
+                <div class="chart" id="neighborhood-sales" data-tooltip="Displays the distribution of neighborhood sales"></div>
+            </section>
+            
+            <section class="box">
+                <h2>Total Revenue by Neighborhood</h2>
+                <div class="chart" id="total-revenue-by-neighborhood" data-tooltip="Displays the distribution of total revenue by neighborhood"></div>
+            </section>
+
+            <section class="box">
+                <h2>Filter Data</h2>
+                <form id="filterForm">
+                    <label for="startDate">Start Date:</label><br>
+                    <input type="date" id="startDate" name="startDate"><br>
+                    <label for="endDate">End Date:</label><br>
+                    <input type="date" id="endDate" name="endDate"><br>
+                    <label for="neighborhood">Neighborhood:</label><br>
+                    <select id="neighborhood" name="neighborhood">
+                        <option value="neighborhood1">Neighborhood 1</option>
+                        <option value="neighborhood2">Neighborhood 2</option>
+                        <option value="neighborhood3">Neighborhood 3</option>
+                    </select><br><br>
+                    <button type="submit">Apply Filters</button>
+                </form>
+            </section>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2024 Team 12, NYC Property Sales</p>
     </footer>
+    <script src="script.js"></script>
 </body> 
 </html>

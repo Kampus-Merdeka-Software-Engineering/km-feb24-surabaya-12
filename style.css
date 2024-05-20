@@ -39,10 +39,23 @@ nav ul li a {
     text-decoration: none;
 }
 
+#show {
+    padding: 10px;
+}
+
 main .container_form .table #tasklist li{
     list-style-type: none;
 }
 
+table, th, td {
+    text-align: center;
+    border : 1px solid black;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 10px;
+}
 main .container_box {
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));

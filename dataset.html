@@ -23,7 +23,7 @@
         <div class="cardtable">
             <h2>Dataset</h2>
             <div class="table-wrapper">
-                <table>
+                <table id="data-table">
                     <thead>
                         <tr>
                             <th>Borough</th>
@@ -33,7 +33,7 @@
                             <th>Building Class at Present</th>
                             <th>Address</th>
                             <th>Year Built</th>
-                            <th>Tax Class at Tim of Sale</th>
+                            <th>Tax Class at Time of Sale</th>
                             <th>Building Class at Time of Sale</th>
                             <th>Sale Price</th>
                             <th>Sale Date</th>
@@ -46,6 +46,11 @@
                         <!-- Data will be inserted here by script.js -->
                     </tbody>
                 </table>
+                <div id="pagination" class="pagination">
+                    <button id="prev">Prev</button>
+                    <span id="page-info">Page 1</span>
+                    <button id="next">Next</button>
+                </div>
             </div>
             <footer>
                 <p>&copy; 2024 Tim 12. NYC Property Sales | Borough 1.</p>

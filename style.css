@@ -167,4 +167,36 @@ tr:nth-child(even) {
     background-color: #c0392b;
     transform: translateY(-2px);
 }
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
 
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.pagination button.disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.pagination #page-info {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #34495e;
+}

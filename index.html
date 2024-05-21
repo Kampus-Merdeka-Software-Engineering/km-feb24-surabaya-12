@@ -7,66 +7,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+     <!-- Header -->
     <header>
-        <div class="header">
-            <h1>NYC Property Sales | Borough 1</h1>
+        <div class="header-content">
+            <h1>Welcome to NYC Property Sales</h1>
+            <nav>
+                <ul>
+                    <li><a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing">Dataset</a></li>
+                    <li><a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD">Dashboard</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing">Dataset</a></li>
-            <li><a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD">Dashboard</a></li>
-        </ul>
-    </nav>
-
+      <!-- Konten Utama -->
     <main>
-        <div class="container_form">
+         <!-- Kotak-kotak untuk Grafik dan Filter -->
+        <section class="container_form">
             <div class="form_input">
-                <h1>INPUT DATA</h1>
-                <input id="DataBuilding" name="DataBuilding"></input>
-                <button onclick="submit()">simpan</button>
+                <h2>Input Data</h2>
+                <input id="DataBuilding" name="DataBuilding" placeholder="Enter building data">
+                <button onclick="submit()">Save</button>
             </div>
             <div class="table">
+                <h2>Task List</h2>
                 <ul id="tasklist">
-                    <li></li>
+                    <li>No tasks available</li>
                 </ul>
             </div>
-        </div>
-
-
-        <div class="container_box">
-            <section class="box">
+        </section>
+        <section class="container_box">
+            <div class="box">
                 <h2>Monthly Sales</h2>
-                <div class="chart" id="monthly-sales-chart" data-tooltip=" Displays the distribution of montly sales"></div>
-            </section>
-
-            <section class="box">
+                <canvas id="monthly-sales-chart" class="chart" data-tooltip="Displays the distribution of monthly sales"></canvas>
+            </div>
+            <div class="box">
                 <h2>Total Revenue Monthly</h2>
-                <div class="chart" id="total-revenue-monthly" data-tooltip="Displays the distribution of total revenue monthly"></div>
-            </section>
-
-            <section class="box">
+                <canvas id="total-revenue-monthly" class="chart" data-tooltip="Displays the distribution of total revenue monthly"></canvas>
+            </div>
+            <div class="box">
                 <h2>Best-selling Building Class</h2>
-                <div class="chart" id="best-selling-building-class" data-tooltip="Displays the distribution of best selling building class"></div>
-            </section>
-
-            <section class="box">
+                <canvas id="best-selling-building-class" class="chart" data-tooltip="Displays the distribution of best-selling building class"></canvas>
+            </div>
+            <div class="box">
                 <h2>Average Sales by Neighborhood</h2>
-                <div class="chart" id="average-sales-by-neighborhood" data-tooltip="Displays the distribution of average sales by neighborhood"></div>
-            </section>
-
-            <section class="box">
+                <canvas id="average-sales-by-neighborhood" class="chart" data-tooltip="Displays the distribution of average sales by neighborhood"></canvas>
+            </div>
+            <div class="box">
                 <h2>Neighborhood Sales</h2>
-                <div class="chart" id="neighborhood-sales" data-tooltip="Displays the distribution of neighborhood sales"></div>
-            </section>
-            
-            <section class="box">
+                <canvas id="neighborhood-sales" class="chart" data-tooltip="Displays the distribution of neighborhood sales"></canvas>
+            </div>
+            <div class="box">
                 <h2>Total Revenue by Neighborhood</h2>
-                <div class="chart" id="total-revenue-by-neighborhood" data-tooltip="Displays the distribution of total revenue by neighborhood"></div>
-            </section>
-
-            <section class="box">
+                <canvas id="total-revenue-by-neighborhood" class="chart" data-tooltip="Displays the distribution of total revenue by neighborhood"></canvas>
+            </div>
+            <div class="box">
                 <h2>Filter Data</h2>
                 <form id="filterForm">
                     <label for="startDate">Start Date:</label><br>
@@ -81,13 +75,16 @@
                     </select><br><br>
                     <button type="submit">Apply Filters</button>
                 </form>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
-
+       <!-- Footer -->
     <footer>
         <p>&copy; 2024 Team 12, NYC Property Sales</p>
     </footer>
+    <!-- Memuat pustaka Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <!-- Memuat skrip JavaScript -->
     <script src="script.js"></script>
-</body> 
+</body>
 </html>

@@ -35,5 +35,71 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.error("Error fetching data:", error));
 });
 
-//dibawah ini adalah code untuk menampilkan data table 100 per page
+//dibawah ini adalah code untuk menampilkan data table 25 per page
+document.addEventListener('DOMContentLoaded', function() {
+    const rowsPerPage = 25;
+    let currentPage = 1;
+    let data = [];
+
+    function fetchData() {
+        fetch('data.json')
+            .then(response => response.json())
+            .then(json => {
+                data = json;
+                displayTable();
+                updatePagination();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    function displayTable() {
+        const tbody = document.querySelector('#data-table tbody');
+        tbody.innerHTML = '';
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const pageData = data.slice(start, end);
+
+        pageData.forEach(row => {
+            const tr = document.createElement('tr');
+            Object.values(row).forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            const actionTd = document.createElement('td');
+            actionTd.innerHTML = '<button class="btn btn-update">Update</button> <button class="btn btn-delete">Delete</button>';
+            tr.appendChild(actionTd);
+            tbody.appendChild(tr);
+        });
+    }
+
+    function updatePagination() {
+        const totalPages = Math.ceil(data.length / rowsPerPage);
+        document.getElementById('prev').disabled = currentPage === 1;
+        document.getElementById('next').disabled = currentPage === totalPages;
+
+        const pageInfo = document.getElementById('page-info');
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    }
+
+    document.getElementById('prev').addEventListener('click', function() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayTable();
+            updatePagination();
+        }
+    });
+
+    document.getElementById('next').addEventListener('click', function() {
+        const totalPages = Math.ceil(data.length / rowsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayTable();
+            updatePagination();
+        }
+    });
+
+    fetchData();
+});
 

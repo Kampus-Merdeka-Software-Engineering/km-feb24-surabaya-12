@@ -1,105 +1,81 @@
-//dibawah ini adalah code untuk menampilkan file json ke table
 document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.querySelector("table tbody");
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+    const pageInfo = document.getElementById("page-info");
+    const pageSelect = document.getElementById("page-select");
+
+    let data = [];
+    const rowsPerPage = 25;
+    let currentPage = 1;
+    let totalPages = 1;
 
     fetch("data.json")
         .then(response => response.json())
-        .then(data => {
-            data.forEach(item => {
-                const row = document.createElement("tr");
-
-                for (const key in item) {
-                    const cell = document.createElement("td");
-                    cell.textContent = item[key];
-                    row.appendChild(cell);
-                }
-
-                const actionCell = document.createElement("td");
-                const updateButton = document.createElement("a");
-                updateButton.href = "#";
-                updateButton.classList.add("btn", "btn-update");
-                updateButton.innerHTML = '<i class="fas fa-edit"></i> Update';
-                
-                const deleteButton = document.createElement("a");
-                deleteButton.href = "#";
-                deleteButton.classList.add("btn", "btn-delete");
-                deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Delete';
-                
-                actionCell.appendChild(updateButton);
-                actionCell.appendChild(deleteButton);
-                row.appendChild(actionCell);
-
-                tableBody.appendChild(row);
-            });
+        .then(fetchedData => {
+            data = fetchedData;
+            totalPages = Math.ceil(data.length / rowsPerPage);
+            renderTable();
+            updatePagination();
         })
         .catch(error => console.error("Error fetching data:", error));
-});
 
-//dibawah ini adalah code untuk menampilkan data table 25 per page
-document.addEventListener('DOMContentLoaded', function() {
-    const rowsPerPage = 25;
-    let currentPage = 1;
-    let data = [];
-
-    function fetchData() {
-        fetch('data.json')
-            .then(response => response.json())
-            .then(json => {
-                data = json;
-                displayTable();
-                updatePagination();
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }
-
-    function displayTable() {
-        const tbody = document.querySelector('#data-table tbody');
-        tbody.innerHTML = '';
-
+    function renderTable() {
+        tableBody.innerHTML = "";
         const start = (currentPage - 1) * rowsPerPage;
         const end = start + rowsPerPage;
         const pageData = data.slice(start, end);
 
-        pageData.forEach(row => {
-            const tr = document.createElement('tr');
-            Object.values(row).forEach(cell => {
-                const td = document.createElement('td');
-                td.textContent = cell;
-                tr.appendChild(td);
-            });
-            const actionTd = document.createElement('td');
-            actionTd.innerHTML = '<button class="btn btn-update">Update</button> <button class="btn btn-delete">Delete</button>';
-            tr.appendChild(actionTd);
-            tbody.appendChild(tr);
+        pageData.forEach(item => {
+            const row = document.createElement("tr");
+            for (const key in item) {
+                if (item.hasOwnProperty(key)) {
+                    const cell = document.createElement("td");
+                    cell.textContent = item[key];
+                    row.appendChild(cell);
+                }
+            }
+            tableBody.appendChild(row);
         });
     }
 
     function updatePagination() {
-        const totalPages = Math.ceil(data.length / rowsPerPage);
-        document.getElementById('prev').disabled = currentPage === 1;
-        document.getElementById('next').disabled = currentPage === totalPages;
-
-        const pageInfo = document.getElementById('page-info');
         pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        pageSelect.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            if (i === currentPage) {
+                option.selected = true;
+            }
+            pageSelect.appendChild(option);
+        }
+
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages;
     }
 
-    document.getElementById('prev').addEventListener('click', function() {
+    prevButton.addEventListener("click", () => {
         if (currentPage > 1) {
             currentPage--;
-            displayTable();
+            renderTable();
             updatePagination();
         }
     });
 
-    document.getElementById('next').addEventListener('click', function() {
-        const totalPages = Math.ceil(data.length / rowsPerPage);
+    nextButton.addEventListener("click", () => {
         if (currentPage < totalPages) {
             currentPage++;
-            displayTable();
+            renderTable();
             updatePagination();
         }
     });
 
-    fetchData();
+    pageSelect.addEventListener("change", () => {
+        currentPage = parseInt(pageSelect.value);
+        renderTable();
+        updatePagination();
+    });
 });
-

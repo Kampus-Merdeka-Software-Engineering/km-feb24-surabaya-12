@@ -5,66 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NYC Property Sales</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tabel.css">
 </head>
 <body>
+     <!-- Header -->
     <header>
-        <div class="header">
-            <h1>NYC Property Sales | Borough 1</h1>
+        <div class="header-content">
+            <h1>Welcome to NYC Property Sales</h1>
+            <nav>
+                <ul>
+                    <li><a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing">Dataset</a></li>
+                    <li><a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD">Dashboard</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing">Dataset</a></li>
-            <li><a href=https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD"">Dashboard</a></li>
-        </ul>
-    </nav>
-
+      <!-- Konten Utama -->
     <main>
-        <div class="box">
-            <h2>Monthly Sales</h2>
-        </div>
-
-        <div class="box">
-            <h2>Total Revenue Monthly</h2>
-        </div>
-
-        <div class="box">
-            <h2>Best-selling Building Class</h2>
-        </div>
-
-        <div class="box">
-            <h2>Average Sales by Neighborhood</h2>
-        </div>
-
-        <div class="box">
-            <h2>Neighborhood Sales</h2>
-        </div>
-        
-        <div class="box">
-            <h2>Total Revenue by Neighborhood</h2>
-        </div>
-
-        <div class="box">
-            <h2>Filter Data</h2>
-            <form id="filterForm">
-                <label for="startDate">Start Date:</label><br>
-                <input type="date" id="startDate" name="startDate"><br>
-                <label for="endDate">End Date:</label><br>
-                <input type="date" id="endDate" name="endDate"><br>
-                <label for="neighborhood">Neighborhood:</label><br>
-                <select id="neighborhood" name="neighborhood">
-                    <option value="neighborhood1">Neighborhood 1</option>
-                    <option value="neighborhood2">Neighborhood 2</option>
-                    <option value="neighborhood3">Neighborhood 3</option>
-                </select><br><br>
-                <button type="submit">Apply Filters</button>
-            </form>
-        </div>
+        <div class="content">
+            <div class="cardtable">
+                <h2>Dataset</h2>
+                <div class="table-wrapper">
+                    <table id="data-table">
+                        <thead>
+                            <tr>
+                                <th>Borough</th>
+                                <th>Neighborhood</th>
+                                <th>Building Class Category</th>
+                                <th>Tax Class at Present</th>
+                                <th>Building Class at Present</th>
+                                <th>Address</th>
+                                <th>Year Built</th>
+                                <th>Tax Class at Time of Sale</th>
+                                <th>Building Class at Time of Sale</th>
+                                <th>Sale Price</th>
+                                <th>Sale Date</th>
+                                <th>Sale Date Month</th>
+                                <th>Sale Date Year</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be inserted here by script.js -->
+                        </tbody>
+                    </table>
+                    <div id="pagination" class="pagination">
+                        <button id="prev">Prev</button>
+                        <span id="page-info">Page 1</span>
+                        <button id="next">Next</button>
+                    </div>
+                </div>
+        <!-- Kotak-kotak untuk Grafik dan Filter -->
+        <!-- <section class="container_form">
+            <div class="form_input">
+                <h2>Input Data</h2>
+                <input id="DataBuilding" name="DataBuilding" placeholder="Enter building data">
+                <button onclick="submit()">Save</button>
+            </div>
+            <div class="table">
+                <h2>Task List</h2>
+                <ul id="tasklist">
+                    <li>No tasks available</li>
+                </ul>
+            </div>
+        </section> -->
+        <section class="container_box">
+            <div class="box">
+                <h2>Monthly Sales</h2>
+                <canvas id="monthly-sales-chart" class="chart" data-tooltip="Displays the distribution of monthly sales"></canvas>
+            </div>
+            <div class="box">
+                <h2>Total Revenue Monthly</h2>
+                <canvas id="total-revenue-monthly" class="chart" data-tooltip="Displays the distribution of total revenue monthly"></canvas>
+            </div>
+            <div class="box">
+                <h2>Best-selling Building Class</h2>
+                <canvas id="best-selling-building-class" class="chart" data-tooltip="Displays the distribution of best-selling building class"></canvas>
+            </div>
+            <div class="box">
+                <h2>Average Sales by Neighborhood</h2>
+                <canvas id="average-sales-by-neighborhood" class="chart" data-tooltip="Displays the distribution of average sales by neighborhood"></canvas>
+            </div>
+            <div class="box">
+                <h2>Neighborhood Sales</h2>
+                <canvas id="neighborhood-sales" class="chart" data-tooltip="Displays the distribution of neighborhood sales"></canvas>
+            </div>
+            <div class="box">
+                <h2>Total Revenue by Neighborhood</h2>
+                <canvas id="total-revenue-by-neighborhood" class="chart" data-tooltip="Displays the distribution of total revenue by neighborhood"></canvas>
+            </div>
+            <div class="box">
+                <h2>Filter Data</h2>
+                <form id="filterForm">
+                    <label for="startDate">Start Date:</label><br>
+                    <input type="date" id="startDate" name="startDate"><br>
+                    <label for="endDate">End Date:</label><br>
+                    <input type="date" id="endDate" name="endDate"><br>
+                    <label for="neighborhood">Neighborhood:</label><br>
+                    <select id="neighborhood" name="neighborhood">
+                        <option value="neighborhood1">Neighborhood 1</option>
+                        <option value="neighborhood2">Neighborhood 2</option>
+                        <option value="neighborhood3">Neighborhood 3</option>
+                    </select><br><br>
+                    <button type="submit">Apply Filters</button>
+                </form>
+            </div>
+        </section>
     </main>
-
+       <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Team 12, NYC Property Sales | Borough 1. All rights reserved.</p>
+        <p>&copy; 2024 Team 12, NYC Property Sales</p>
     </footer>
-</body> 
+    <!-- Memuat pustaka Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <!-- Memuat skrip JavaScript -->
+    <script src="script.js"></script>
+    <script src="tabel.js"></script>
+</body>
 </html>

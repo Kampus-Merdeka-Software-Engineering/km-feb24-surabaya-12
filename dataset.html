@@ -4,24 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>NYC Property Sales | Dataset</title>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Tim 12</h2>
+    <header class="header">
+        <div class="logo">
+            <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/61af164800e38c11efc60b6d_RevoU.svg" alt="Logo">
+            <h2>Tim 12</h2>
+        </div>
         <nav>
-            <a href="index.html"><i class="fas fa-home"></i>Home</a>
-            <a href="dataset.html"><i class="fas fa-dataset"></i>Dataset</a>
-            <a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing"><i class="fas fa-spreadsheet"></i>Spreadsheet</a>
-            <a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD"><i class="fas fa-lookerstudio"></i>LookerStudio</a>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dataset.html"><i class="fas fa-database"></i> Dataset</a>
+            <a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing"><i class="fas fa-file-excel"></i> Spreadsheet</a>
+            <a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD"><i class="fas fa-chart-line"></i> LookerStudio</a>
         </nav>
-    </div>
+    </header>
     <div class="content">
-        <div class="header">
+        <div class="header-content">
             <h1>NYC Property Sales | Borough 1</h1>
         </div>
+        <div class="filter-container">
+            <select id="filter-neighborhood" class="filter-dropdown">
+                <option value="">Neighborhood</option>
+            </select>
+            <select id="filter-building-class-category" class="filter-dropdown">
+                <option value="">Building Class Category</option>
+            </select>
+            <select id="filter-tax-class-at-present" class="filter-dropdown">
+                <option value="">Tax Class at Present</option>
+            </select>
+            <select id="filter-building-class-at-present" class="filter-dropdown">
+                <option value="">Building Class at Present</option>
+            </select>
+        </div>
+        <div class="filter-container">
+            <select id="filter-adress" class="filter-dropdown">
+                <option value="">Adress</option>
+            </select>
+            <select id="filter-year-built" class="filter-dropdown">
+                <option value="">Year Built</option>
+            </select>
+            <select id="filter-tax-class-at-sale" class="filter-dropdown">
+                <option value="">Tax Class at Time of Sale</option>
+            </select>
+            <select id="filter-building-class-at-sale" class="filter-dropdown">
+                <option value="">Building Class at Time of Sale</option>
+            </select>
+        </div>
+        <div class="filter-container">    
+            <select id="filter-sale-price" class="filter-dropdown">
+                <label>Sale Price</label>
+                <option value="">Sale Price Range</option>
+            </select>
+            <select id="filter-sale-date" class="filter-dropdown">
+                <option value="">Sale Date</option>
+            </select>
+            <select id="filter-sale-date-month" class="filter-dropdown">
+                <option value="">Sale Date Month</option>
+            </select>
+            <select id="filter-sale-date-year" class="filter-dropdown">
+                <option value="">Sale Date Year</option>
+            </select>
+        </div>
+        <div class="filter-container">
+            <button id="reset-filters" class="filter-button">Reset Filters</button>
+        </div>
         <div class="cardtable">
-            <h2>Dataset</h2>
             <div class="table-wrapper">
                 <table id="data-table">
                     <thead>
@@ -31,12 +80,34 @@
                             <th>Building Class Category</th>
                             <th>Tax Class at Present</th>
                             <th>Building Class at Present</th>
-                            <th>Address</th>
-                            <th>Year Built</th>
+                            <th>Adress</th>
+                            <th id="year-built-header">
+                                <span>Year Built</span>
+                                <div class="button-group">
+                                    <button id="sort-year-built" class="button-icon"><i class="fas fa-sort"></i></button>
+                                    <button id="reset-sort-year-built" class="button-icon"><i class="fas fa-times"></i></button>
+                                </div>
+                            </th>
                             <th>Tax Class at Time of Sale</th>
                             <th>Building Class at Time of Sale</th>
-                            <th>Sale Price</th>
-                            <th>Sale Date</th>
+                            <th id="sale-price-header">
+                                <div class="header-text">
+                                    <span>Sale Price</span>
+                                    <div class="button-group">
+                                        <button id="sort-sale-price" class="button-icon"><i class="fas fa-sort"></i></button>
+                                        <button id="reset-sort-sale-price" class="button-icon"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th id="sale-date-header">
+                                <div class="header-text">
+                                    <span>Sale Date</span>
+                                    <div class="button-group">
+                                        <button id="sort-sale-date" class="button-icon"><i class="fas fa-sort"></i></button>
+                                        <button id="reset-sort-sale-date" class="button-icon"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </th>
                             <th>Sale Date Month</th>
                             <th>Sale Date Year</th>
                         </tr>
@@ -52,11 +123,11 @@
                     <button id="next">Next</button>
                 </div>
             </div>
-            <footer>
-                <p>&copy; 2024 Tim 12. NYC Property Sales | Borough 1.</p>
-            </footer>
         </div>
     </div>
+    <footer>
+        <p>&copy; 2024 Tim 12. NYC Property Sales | Borough 1.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>NYC Property Sales | Dataset</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/61af164800e38c11efc60b6d_RevoU.svg" alt="Logo">
+            <h2>Tim 12</h2>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dataset.html"><i class="fas fa-database"></i> Dataset</a>
+            <a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing"><i class="fas fa-file-excel"></i> Spreadsheet</a>
+            <a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD"><i class="fas fa-chart-line"></i> LookerStudio</a>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="header-content">
+            <h1>NYC Property Sales | Borough 1</h1>
+        </div>
+        <div class="filter-container">
+            <select id="filter-neighborhood" class="filter-dropdown">
+                <option value="">Neighborhood</option>
+                <option value="ALPHABET CITY">ALPHABET CITY</option>
+                <option value="CHELSEA">CHELSEA</option>
+                <option value="CHINATOWN">CHINATOWN</option>
+                <option value="CIVIC CENTER">CIVIC CENTER</option>
+                <option value="CLINTON">CLINTON</option>
+                <option value="EAST VILLAGE">EAST VILLAGE</option>
+                <option value="FASHION">FASHION</option>
+                <option value="FINANCIAL">FINANCIAL</option>
+                <option value="FLATIRON">FLATIRON</option>
+                <option value="GRAMERCY">GRAMERCY</option>
+                <option value="GREENWICH VILLAGE-CENTRAL">GREENWICH VILLAGE-CENTRAL</option>
+                <option value="GREENWICH VILLAGE-WEST">GREENWICH VILLAGE-WEST</option>
+                <option value="HARLEM-CENTRAL">HARLEM-CENTRAL</option>
+                <option value="HARLEM-EAST">HARLEM-EAST</option>
+                <option value="HARLEM-UPPER">HARLEM-UPPER</option>
+                <option value="HARLEM-WEST">HARLEM-WEST</option>
+                <option value="KIPS BAY">KIPS BAY</option>
+                <option value="LITTLE ITALY">LITTLE ITALY</option>
+                <option value="LOWER EAST SIDE">LOWER EAST SIDE</option>
+                <option value="MANHATTAN VALLEY">MANHATTAN VALLEY</option>
+                <option value="MIDTOWN CBS">MIDTOWN CBS</option>
+                <option value="MIDTOWN EAST">MIDTOWN EAST</option>
+                <option value="MIDTOWN WEST">MIDTOWN WEST</option>
+                <option value="MURRAY HILL">MURRAY HILL</option>
+                <option value="ROOSEVELT ISLAND">ROOSEVELT ISLAND</option>
+                <option value="SOHO">SOHO</option>
+                <option value="SOUTHBRIDGE">SOUTHBRIDGE</option>
+                <option value="TRIBECA">TRIBECA</option>
+                <option value="UPPER EAST SIDE (59-79)">UPPER EAST SIDE (59-79)</option>
+                <option value="UPPER EAST SIDE (79-96)">UPPER EAST SIDE (79-96)</option>
+                <option value="UPPER EAST SIDE (96-110)">UPPER EAST SIDE (96-110)</option>
+                <option value="UPPER WEST SIDE (59-79)">UPPER WEST SIDE (59-79)</option>
+                <option value="UPPER WEST SIDE (79-96)">UPPER WEST SIDE (79-96)</option>
+                <option value="UPPER WEST SIDE (96-116)">UPPER WEST SIDE (96-116)</option>
+                <option value="WASHINGTON HEIGHTS LOWER">WASHINGTON HEIGHTS LOWER</option>
+                <option value="WASHINGTON HEIGHTS UPPER">WASHINGTON HEIGHTS UPPER</option>
+            </select>
+            <select id="filter-building-class-category" class="filter-dropdown">
+                <option value="">Building Class Category</option>
+                <option value="02 TWO FAMILY DWELLINGS">02 TWO FAMILY DWELLINGS</option>
+                <option value="03 THREE FAMILY DWELLINGS">03 THREE FAMILY DWELLINGS</option>
+                <option value="07 RENTALS - WALKUP APARTMENTS">07 RENTALS - WALKUP APARTMENTS</option>
+                <option value="08 RENTALS - ELEVATOR APARTMENTS">08 RENTALS - ELEVATOR APARTMENTS</option>
+                <option value="09 COOPS - WALKUP APARTMENTS">09 COOPS - WALKUP APARTMENTS</option>
+                <option value="10 COOPS - ELEVATOR APARTMENTS">10 COOPS - ELEVATOR APARTMENTS</option>
+                <option value="11A CONDO-RENTALS">11A CONDO-RENTALS</option>
+                <option value="12 CONDOS - WALKUP APARTMENTS">12 CONDOS - WALKUP APARTMENTS</option>
+                <option value="13 CONDOS - ELEVATOR APARTMENTS">13 CONDOS - ELEVATOR APARTMENTS</option>
+                <option value="15 CONDOS - 2-10 UNIT RESIDENTIAL">15 CONDOS - 2-10 UNIT RESIDENTIAL</option>
+                <option value="16 CONDOS - 2-10 UNIT WITH COMMERCIAL UNIT">16 CONDOS - 2-10 UNIT WITH COMMERCIAL UNIT</option>
+                <option value="17 CONDO COOPS">17 CONDO COOPS</option>
+                <option value="21 OFFICE BUILDINGS">21 OFFICE BUILDINGS</option>
+                <option value="22 STORE BUILDINGS">22 STORE BUILDINGS</option>
+                <option value="25 LUXURY HOTELS">25 LUXURY HOTELS</option>
+                <option value="26 OTHER HOTELS">26 OTHER HOTELS</option>
+                <option value="28 COMMERCIAL CONDOS">28 COMMERCIAL CONDOS</option>
+                <option value="29 COMMERCIAL GARAGES">29 COMMERCIAL GARAGES</option>
+                <option value="32 HOSPITAL AND HEALTH FACILITIES">32 HOSPITAL AND HEALTH FACILITIES</option>
+                <option value="34 THEATRES">34 THEATRES</option>
+                <option value="37 RELIGIOUS FACILITIES">37 RELIGIOUS FACILITIES</option>
+                <option value="41 TAX CLASS 4 - OTHER">41 TAX CLASS 4 - OTHER</option>
+                <option value="43 CONDO OFFICE BUILDINGS">43 CONDO OFFICE BUILDINGS</option>
+                <option value="44 CONDO PARKING">44 CONDO PARKING</option>
+                <option value="45 CONDO HOTELS">45 CONDO HOTELS</option>
+                <option value="46 CONDO STORE BUILDINGS">46 CONDO STORE BUILDINGS</option>
+                <option value="47 CONDO NON-BUSINESS STORAGE">47 CONDO NON-BUSINESS STORAGE</option>
+            </select>
+            <select id="filter-sale-date-year" class="filter-dropdown">
+                <option value="">Sale Date Year</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+            </select>
+        </div>
+        <div class="cardtable">
+            <div class="table-wrapper">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>Borough</th>
+                            <th>Neighborhood</th>
+                            <th>Building Class Category</th>
+                            <th>Tax Class at Present</th>
+                            <th>Building Class at Present</th>
+                            <th>Adress</th>
+                            <th id="year-built-header">
+                                <span>Year Built</span>
+                                <div class="button-group">
+                                    <button id="sort-year-built" class="button-icon"><i class="fas fa-sort"></i></button>
+                                    <button id="reset-sort-year-built" class="button-icon"><i class="fas fa-times"></i></button>
+                                </div>
+                            </th>
+                            <th>Tax Class at Time of Sale</th>
+                            <th>Building Class at Time of Sale</th>
+                            <th id="sale-price-header">
+                                <div class="header-text">
+                                    <span>Sale Price</span>
+                                    <div class="button-group">
+                                        <button id="sort-sale-price" class="button-icon"><i class="fas fa-sort"></i></button>
+                                        <button id="reset-sort-sale-price" class="button-icon"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th id="sale-date-header">
+                                <div class="header-text">
+                                    <span>Sale Date</span>
+                                    <div class="button-group">
+                                        <button id="sort-sale-date" class="button-icon"><i class="fas fa-sort"></i></button>
+                                        <button id="reset-sort-sale-date" class="button-icon"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>Sale Date Month</th>
+                            <th>Sale Date Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted here by script.js -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <button id="prev">Prev</button>
+                    <span id="page-info">Page 1</span>
+                    <select id="page-select"></select>
+                    <button id="next">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Tim 12. NYC Property Sales | Borough 1.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

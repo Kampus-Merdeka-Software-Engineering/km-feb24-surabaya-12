@@ -3,88 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NYC Property Sales</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>NYC Property Sales | Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-     <!-- Header -->
-    <header>
-        <div class="header-content">
-            <h1>Welcome to NYC Property Sales</h1>
-            <nav>
-                <ul>
-                    <li><a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing">Dataset</a></li>
-                    <li><a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD">Dashboard</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <div class="logo">
+            <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/61af164800e38c11efc60b6d_RevoU.svg" alt="Logo">
+            <h2>Tim 12</h2>
         </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dataset.html"><i class="fas fa-database"></i> Dataset</a>
+            <a href="https://docs.google.com/spreadsheets/d/17MKo5IxFvv4wRtR7pMpvX2WyBEN6ipqE0IVPwpwFQUI/edit?usp=sharing"><i class="fas fa-file-excel"></i> Spreadsheet</a>
+            <a href="https://lookerstudio.google.com/u/0/reporting/01871fdf-c1ad-4458-8784-0da083afa404/page/eOxuD"><i class="fas fa-chart-line"></i> LookerStudio</a>
+        </nav>
     </header>
-      <!-- Konten Utama -->
-    <main>
-         <!-- Kotak-kotak untuk Grafik dan Filter -->
-        <section class="container_form">
-            <div class="form_input">
-                <h2>Input Data</h2>
-                <input id="DataBuilding" name="DataBuilding" placeholder="Enter building data">
-                <button onclick="submit()">Save</button>
+    <div class="content">
+        <div class="header-content">
+            <h1>NYC Property Sales | Borough 1</h1>
+        </div>
+        <div class="filter-container">
+            <select id="filter-neighborhood" class="filter-dropdown">
+                <option value="">Neighborhood</option>
+                <option value="ALPHABET CITY">ALPHABET CITY</option>
+                <option value="CHELSEA">CHELSEA</option>
+                <option value="CHINATOWN">CHINATOWN</option>
+                <option value="CIVIC CENTER">CIVIC CENTER</option>
+                <option value="CLINTON">CLINTON</option>
+                <option value="EAST VILLAGE">EAST VILLAGE</option>
+                <option value="FASHION">FASHION</option>
+                <option value="FINANCIAL">FINANCIAL</option>
+                <option value="FLATIRON">FLATIRON</option>
+                <option value="GRAMERCY">GRAMERCY</option>
+                <option value="GREENWICH VILLAGE-CENTRAL">GREENWICH VILLAGE-CENTRAL</option>
+                <option value="GREENWICH VILLAGE-WEST">GREENWICH VILLAGE-WEST</option>
+                <option value="HARLEM-CENTRAL">HARLEM-CENTRAL</option>
+                <option value="HARLEM-EAST">HARLEM-EAST</option>
+                <option value="HARLEM-UPPER">HARLEM-UPPER</option>
+                <option value="HARLEM-WEST">HARLEM-WEST</option>
+                <option value="KIPS BAY">KIPS BAY</option>
+                <option value="LITTLE ITALY">LITTLE ITALY</option>
+                <option value="LOWER EAST SIDE">LOWER EAST SIDE</option>
+                <option value="MANHATTAN VALLEY">MANHATTAN VALLEY</option>
+                <option value="MIDTOWN CBS">MIDTOWN CBS</option>
+                <option value="MIDTOWN EAST">MIDTOWN EAST</option>
+                <option value="MIDTOWN WEST">MIDTOWN WEST</option>
+                <option value="MURRAY HILL">MURRAY HILL</option>
+                <option value="ROOSEVELT ISLAND">ROOSEVELT ISLAND</option>
+                <option value="SOHO">SOHO</option>
+                <option value="SOUTHBRIDGE">SOUTHBRIDGE</option>
+                <option value="TRIBECA">TRIBECA</option>
+                <option value="UPPER EAST SIDE (59-79)">UPPER EAST SIDE (59-79)</option>
+                <option value="UPPER EAST SIDE (79-96)">UPPER EAST SIDE (79-96)</option>
+                <option value="UPPER EAST SIDE (96-110)">UPPER EAST SIDE (96-110)</option>
+                <option value="UPPER WEST SIDE (59-79)">UPPER WEST SIDE (59-79)</option>
+                <option value="UPPER WEST SIDE (79-96)">UPPER WEST SIDE (79-96)</option>
+                <option value="UPPER WEST SIDE (96-116)">UPPER WEST SIDE (96-116)</option>
+                <option value="WASHINGTON HEIGHTS LOWER">WASHINGTON HEIGHTS LOWER</option>
+                <option value="WASHINGTON HEIGHTS UPPER">WASHINGTON HEIGHTS UPPER</option>
+            </select>
+            <select id="filter-building-class-category" class="filter-dropdown">
+                <option value="">Building Class Category</option>
+                <option value="02 TWO FAMILY DWELLINGS">02 TWO FAMILY DWELLINGS</option>
+                <option value="03 THREE FAMILY DWELLINGS">03 THREE FAMILY DWELLINGS</option>
+                <option value="07 RENTALS - WALKUP APARTMENTS">07 RENTALS - WALKUP APARTMENTS</option>
+                <option value="08 RENTALS - ELEVATOR APARTMENTS">08 RENTALS - ELEVATOR APARTMENTS</option>
+                <option value="09 COOPS - WALKUP APARTMENTS">09 COOPS - WALKUP APARTMENTS</option>
+                <option value="10 COOPS - ELEVATOR APARTMENTS">10 COOPS - ELEVATOR APARTMENTS</option>
+                <option value="11A CONDO-RENTALS">11A CONDO-RENTALS</option>
+                <option value="12 CONDOS - WALKUP APARTMENTS">12 CONDOS - WALKUP APARTMENTS</option>
+                <option value="13 CONDOS - ELEVATOR APARTMENTS">13 CONDOS - ELEVATOR APARTMENTS</option>
+                <option value="15 CONDOS - 2-10 UNIT RESIDENTIAL">15 CONDOS - 2-10 UNIT RESIDENTIAL</option>
+                <option value="16 CONDOS - 2-10 UNIT WITH COMMERCIAL UNIT">16 CONDOS - 2-10 UNIT WITH COMMERCIAL UNIT</option>
+                <option value="17 CONDO COOPS">17 CONDO COOPS</option>
+                <option value="21 OFFICE BUILDINGS">21 OFFICE BUILDINGS</option>
+                <option value="22 STORE BUILDINGS">22 STORE BUILDINGS</option>
+                <option value="25 LUXURY HOTELS">25 LUXURY HOTELS</option>
+                <option value="26 OTHER HOTELS">26 OTHER HOTELS</option>
+                <option value="28 COMMERCIAL CONDOS">28 COMMERCIAL CONDOS</option>
+                <option value="29 COMMERCIAL GARAGES">29 COMMERCIAL GARAGES</option>
+                <option value="32 HOSPITAL AND HEALTH FACILITIES">32 HOSPITAL AND HEALTH FACILITIES</option>
+                <option value="34 THEATRES">34 THEATRES</option>
+                <option value="37 RELIGIOUS FACILITIES">37 RELIGIOUS FACILITIES</option>
+                <option value="41 TAX CLASS 4 - OTHER">41 TAX CLASS 4 - OTHER</option>
+                <option value="43 CONDO OFFICE BUILDINGS">43 CONDO OFFICE BUILDINGS</option>
+                <option value="44 CONDO PARKING">44 CONDO PARKING</option>
+                <option value="45 CONDO HOTELS">45 CONDO HOTELS</option>
+                <option value="46 CONDO STORE BUILDINGS">46 CONDO STORE BUILDINGS</option>
+                <option value="47 CONDO NON-BUSINESS STORAGE">47 CONDO NON-BUSINESS STORAGE</option>
+            </select>
+            <select id="filter-sale-date-year" class="filter-dropdown">
+                <option value="">Sale Date Year</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+            </select>
+        </div>
+        <div class="card-sub">
+            <div class="cardsub">
+                <h3>Total Property</h3>
+                <h4 id="total-properties"></h4>
             </div>
-            <div class="table">
-                <h2>Task List</h2>
-                <ul id="tasklist">
-                    <li>No tasks available</li>
-                </ul>
+            <div class="cardsub">
+                <h3>Total Revenue</h3>
+                <h4 id="total-revenue"></h4>
             </div>
-        </section>
-        <section class="container_box">
-            <div class="box">
-                <h2>Monthly Sales</h2>
-                <canvas id="monthly-sales-chart" class="chart" data-tooltip="Displays the distribution of monthly sales"></canvas>
+            <div class="cardsub">
+                <h3>Total Neighborhood</h3>
+                <h4 id="total-neighborhood"></h4>
             </div>
-            <div class="box">
-                <h2>Total Revenue Monthly</h2>
-                <canvas id="total-revenue-monthly" class="chart" data-tooltip="Displays the distribution of total revenue monthly"></canvas>
+            <div class="cardsub">
+                <h3>Total Building Class Category</h3>
+                <h4 id="total-building-class-category"></h4>
             </div>
-            <div class="box">
-                <h2>Best-selling Building Class</h2>
-                <canvas id="best-selling-building-class" class="chart" data-tooltip="Displays the distribution of best-selling building class"></canvas>
-            </div>
-            <div class="box">
-                <h2>Average Sales by Neighborhood</h2>
-                <canvas id="average-sales-by-neighborhood" class="chart" data-tooltip="Displays the distribution of average sales by neighborhood"></canvas>
-            </div>
-            <div class="box">
-                <h2>Neighborhood Sales</h2>
-                <canvas id="neighborhood-sales" class="chart" data-tooltip="Displays the distribution of neighborhood sales"></canvas>
-            </div>
-            <div class="box">
-                <h2>Total Revenue by Neighborhood</h2>
-                <canvas id="total-revenue-by-neighborhood" class="chart" data-tooltip="Displays the distribution of total revenue by neighborhood"></canvas>
-            </div>
-            <div class="box">
-                <h2>Filter Data</h2>
-                <form id="filterForm">
-                    <label for="startDate">Start Date:</label><br>
-                    <input type="date" id="startDate" name="startDate"><br>
-                    <label for="endDate">End Date:</label><br>
-                    <input type="date" id="endDate" name="endDate"><br>
-                    <label for="neighborhood">Neighborhood:</label><br>
-                    <select id="neighborhood" name="neighborhood">
-                        <option value="neighborhood1">Neighborhood 1</option>
-                        <option value="neighborhood2">Neighborhood 2</option>
-                        <option value="neighborhood3">Neighborhood 3</option>
-                    </select><br><br>
-                    <button type="submit">Apply Filters</button>
-                </form>
-            </div>
-        </section>
-    </main>
-       <!-- Footer -->
+        </div>
+        <div class="card">
+            <h2>Monthly Sales</h2>
+            <canvas id="monthly-sales-chart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Total Revenue Monthly</h2>
+            <canvas id="total-revenue-monthly"></canvas>
+        </div>
+        <div class="card">
+            <h2>Total Sales by Building Class Category</h2>
+            <canvas id="best-selling-building-class"></canvas>
+        </div>
+        <div class="card">
+            <h2>Average Sales by Building Class Category</h2>
+            <canvas id="average-sales-by-building-class"></canvas>
+        </div>
+        <div class="card">
+            <h2>Total Revenue by Building Class Category</h2>
+            <canvas id="total-revenue-by-building-class"></canvas>
+        </div>
+        <div class="card">
+            <h2>Total Sales by Neighborhood</h2>
+            <canvas id="neighborhood-sales"></canvas>
+        </div>
+        <div class="card">
+            <h2>Average Sales by Neighborhood</h2>
+            <canvas id="average-sales-by-neighborhood"></canvas>
+        </div>
+        <div class="card">
+            <h2>Total Revenue by Neighborhood</h2>
+            <canvas id="total-revenue-by-neighborhood"></canvas>
+        </div>
+    </div>
     <footer>
-        <p>&copy; 2024 Team 12, NYC Property Sales</p>
+        <p>&copy; 2024 Tim 12. NYC Property Sales | Borough 1.</p>
     </footer>
-    <!-- Memuat pustaka Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     <!-- Memuat skrip JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

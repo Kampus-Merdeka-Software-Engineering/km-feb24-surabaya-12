@@ -1,3 +1,4 @@
+// Menunggu hingga konten DOM dimuat sebelum menjalankan kode
 document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.querySelector("table tbody");
     const prevButton = document.getElementById("prev");
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterBuildingClassCategory = document.getElementById("filter-building-class-category");
     const filterSaleDateYear = document.getElementById("filter-sale-date-year");
 
-
+    // Inisialisasi data kosong
     let data = [];
     let originalData = []; 
     const rowsPerPage = 25;
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPages = 1;
     let sortAsc = true;
 
+    // Mengambil data dari file JSON
     fetch("data.json")
         .then(response => response.json())
         .then(fetchedData => {
@@ -34,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
             totalPages = Math.ceil(data.length / rowsPerPage);
             renderTable();
             updatePagination();
-            createMonthlySalesChart(data); // Call the function to create the monthly sales chart
-            createTotalRevenueMonthlyChart(data); // Call the function to create the total revenue monthly chart
+            createMonthlySalesChart(data); 
+            createTotalRevenueMonthlyChart(data); 
             createBestSellingBuildingClassChart(data);
             createAverageSalesByNeighborhoodChart(data);
             createNeighborhoodSalesChart(data);
@@ -49,22 +51,28 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error fetching data:", error));
         
+        // Menambahkan event listener untuk filter neighborhood
         filterNeighborhood.addEventListener("change", applyFilters);
+        // Menambahkan event listener untuk filter building class category
         filterBuildingClassCategory.addEventListener("change", applyFilters);
+         // Menambahkan event listener untuk filter tahun tanggal penjualan
         filterSaleDateYear.addEventListener("change", applyFilters);
 
-    // Fungsi untuk menerapkan filter
+    // Fungsi untuk menerapkan filter pada data
         function applyFilters() {
             const neighborhood = filterNeighborhood.value;
             const buildingClassCategory = filterBuildingClassCategory.value;
             const saleDateYear = filterSaleDateYear.value;
 
+            // Menerapkan filter pada data asli dan menyimpan data yang difilter
             let filteredData = originalData.filter(item => {
                 return (!neighborhood || item["NEIGHBORHOOD"] === neighborhood) &&
                     (!buildingClassCategory || item["BUILDING_CLASS_CATEGORY"] === buildingClassCategory) &&
                     (!saleDateYear || item["SALE_DATE_YEAR"] === saleDateYear);
             });
 
+
+            // Mengupdate data yang ditampilkan, merender ulang tabel, dan elemen lainnya sesuai dengan data yang difilter
             data = filteredData;
             currentPage = 1;
             renderTable();
@@ -83,19 +91,21 @@ document.addEventListener("DOMContentLoaded", () => {
             displayTotalBuildingClassCategory(filteredData); 
         }
 
-        // Event listener untuk reset nilai filter saat opsi paling atas dipilih
+        // Menambahkan event listener untuk reset filter
         filterNeighborhood.addEventListener("change", function() {
             if (filterNeighborhood.value === "") {
                 resetFilters();
             }
         });
 
+        // Menambahkan event listener untuk reset filter
         filterBuildingClassCategory.addEventListener("change", function() {
             if (filterBuildingClassCategory.value === "") {
                 resetFilters();
             }
         });
 
+        // Menambahkan event listener untuk reset filter
         filterSaleDateYear.addEventListener("change", function() {
             if (filterSaleDateYear.value === "") {
                 resetFilters();
@@ -108,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filterBuildingClassCategory.value = "";
             filterSaleDateYear.value = "";
 
+            // Mengembalikan ke data asli
             data = [...originalData];
             currentPage = 1;
             renderTable();
@@ -126,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
             displayTotalBuildingClassCategory(data); 
         }
         
+
+        // Menambahkan event listener untuk tombol sort berdasarkan sale date
         if (sortSaleDateButton) {
             sortSaleDateButton.addEventListener("click", () => {
                 toggleSortOrder();
@@ -133,12 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     
+        // Menambahkan event listener untuk reset sort berdasarkan sale date
         if (resetSortSaleDateButton) {
             resetSortSaleDateButton.addEventListener("click", () => {
                 resetSortOrder();
             });
         }
     
+        // Menambahkan event listener untuk tombol sort berdasarkan year built
         if (sortYearBuiltButton) {
             sortYearBuiltButton.addEventListener("click", () => {
                 toggleSortOrder();
@@ -146,29 +161,34 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     
+        // Menambahkan event listener untuk reset sort berdasarkan year built
         if (resetSortYearBuiltButton) {
             resetSortYearBuiltButton.addEventListener("click", () => {
                 resetSortOrderYearBuilt();
             });
         }
     
-        if (sortSalePriceButton) { // Tambahkan ini
+        // Menambahkan event listener untuk tombol sort berdasarkan sale price
+        if (sortSalePriceButton) { 
             sortSalePriceButton.addEventListener("click", () => {
                 toggleSortOrder();
                 sortDataBySalePrice();
             });
         }
     
-        if (resetSortSalePriceButton) { // Tambahkan ini
+        // Menambahkan event listener untuk reset sort berdasarkan sale price
+        if (resetSortSalePriceButton) { 
             resetSortSalePriceButton.addEventListener("click", () => {
                 resetSortOrderSalePrice();
             });
         }
     
+        // Fungsi untuk membalikkan urutan pengurutan
         function toggleSortOrder() {
             sortAsc = !sortAsc;
         }
     
+        // Fungsi untuk mengurutkan data berdasaekan sale date
         function sortDataBySaleDate() {
             data.sort((a, b) => {
                 const dateA = new Date(a["SALE_DATE"]);
@@ -184,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePagination();
         }
     
+        // Fungsi untuk reset pengurutan
         function resetSortOrder() {
             data = [...originalData];
             currentPage = 1;
@@ -191,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePagination();
         }
     
+        // Fungsi untuk mengurutkan data berdasarkan year built
         function sortDataByYearBuilt() {
             data.sort((a, b) => {
                 const yearA = parseInt(a["YEAR_BUILT"]);
@@ -206,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePagination();
         }
     
+        // Fungsi untuk reset pengurutan year built
         function resetSortOrderYearBuilt() {
             data = [...originalData];
             currentPage = 1;
@@ -213,7 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePagination();
         }
     
-        function sortDataBySalePrice() { // Tambahkan ini
+        // Fungsi untuk mengurutkan data berdasarkan sale price
+        function sortDataBySalePrice() { 
             data.sort((a, b) => {
                 const priceA = parseFloat(a["SALE_PRICE"]);
                 const priceB = parseFloat(b["SALE_PRICE"]);
@@ -228,13 +252,15 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePagination();
         }
     
-        function resetSortOrderSalePrice() { // Tambahkan ini
+        // Fungsi untuk reset pengurutan sale price
+        function resetSortOrderSalePrice() { 
             data = [...originalData];
             currentPage = 1;
             renderTable();
             updatePagination();
         }
     
+        // Fungsi untuk merender tabel dengan data yang telah diurutkan atau difilter
         function renderTable() {
             if (!tableBody) return;
 
@@ -256,6 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Fungsi untuk merender elemen pagination setelah perubahan data atau halaman
         function updatePagination() {    
             if (!pageInfo || !pageSelect) return;
         
@@ -277,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nextButton.disabled = currentPage === totalPages;
         }
         
+        // Menambahkan event listener untuk tombol prev
         if (prevButton) {
             prevButton.addEventListener("click", () => {
                 if (currentPage > 1) {
@@ -287,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         
+        // Menambahkan event listener untuk tombol next
         if (nextButton) {
             nextButton.addEventListener("click", () => {
                 if (currentPage < totalPages) {
@@ -297,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         
+        // Menambahkan event listener untuk tombol select page
         if (pageSelect) {
             pageSelect.addEventListener("change", () => {
                 currentPage = parseInt(pageSelect.value);
@@ -305,9 +335,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         
-
+        // Fungsi untuk membuat chart monthly sales
         function createMonthlySalesChart(data) {
-            // Create an object to store sales data for each month and year
+
+            // Membuat objek untuk menyimpan data penjualan bulanan
             const monthlySalesData = {};
             data.forEach(entry => {
                 const monthYear = `${entry["SALE_DATE_YEAR"]}-${entry["SALE_DATE_MONTH"].padStart(2, '0')}`;
@@ -318,18 +349,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Convert the object to an array and sort by year and month
+            // Mengurutkan data penjualan bulanan berdasarkan tahun dan bulan
             const sortedMonthlySales = Object.entries(monthlySalesData).sort(([a], [b]) => {
                 const [yearA, monthA] = a.split('-').map(Number);
                 const [yearB, monthB] = b.split('-').map(Number);
                 return yearA - yearB || monthA - monthB;
             });
 
-            // Extract the sorted month-year labels and sales data
+            // Mendapatkan label bulan dan tahun serta data penjualan
             const monthsYears = sortedMonthlySales.map(([monthYear]) => monthYear);
             const sales = sortedMonthlySales.map(([, count]) => count);
 
-            // Create chart using Chart.js
+            // Membuat chart menggunakan chart.js
             var ctx = document.getElementById('monthly-sales-chart').getContext('2d');
             if (window.monthlySalesChart) {
                 window.monthlySalesChart.destroy();
@@ -358,12 +389,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Fungsi untuk membuat chart total revenue monthly
         function createTotalRevenueMonthlyChart(data) {
-            // Create an object to store total revenue data for each month and year
+            
+            // Membuat objek untuk menyimpan data penjualan bulanan
             const totalRevenueMonthlyData = {};
             data.forEach(entry => {
                 const monthYear = `${entry["SALE_DATE_YEAR"]}-${entry["SALE_DATE_MONTH"].padStart(2, '0')}`;
-                const revenue = parseFloat(entry["SALE_PRICE"]); // Convert SALE_PRICE to a float
+                const revenue = parseFloat(entry["SALE_PRICE"]); 
                 if (totalRevenueMonthlyData[monthYear]) {
                     totalRevenueMonthlyData[monthYear] += revenue;
                 } else {
@@ -371,18 +404,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Convert the object to an array and sort by year and month
+            // Mengurutkan total pendapatan bulanan berdasarkan tahun dan bulan
             const sortedTotalRevenue = Object.entries(totalRevenueMonthlyData).sort(([a], [b]) => {
                 const [yearA, monthA] = a.split('-').map(Number);
                 const [yearB, monthB] = b.split('-').map(Number);
                 return yearA - yearB || monthA - monthB;
             });
 
-            // Extract the sorted month-year labels and total revenue data
+            // Mendapatkan label bulan dan tahun serta data pendapatan
             const monthsYears = sortedTotalRevenue.map(([monthYear]) => monthYear);
             const revenue = sortedTotalRevenue.map(([, amount]) => amount);
 
-            // Create chart using Chart.js
+            // Membuat chart menggunakan chart.js
             var ctx = document.getElementById('total-revenue-monthly').getContext('2d');
             if (window.totalRevenueMonthlyChart) {
                 window.totalRevenueMonthlyChart.destroy();
@@ -411,8 +444,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Fungsi untuk membuat chart best selling building class
         function createBestSellingBuildingClassChart(data) {
-            // Create an object to store total sales for each building class category
+            
+            // Membuat objek untuk menyimpan data penjualan per building class
             const buildingClassSalesData = {};
             data.forEach(entry => {
                 const buildingClass = entry["BUILDING_CLASS_CATEGORY"];
@@ -422,15 +457,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     buildingClassSalesData[buildingClass] = 1;
                 }
             });
-        
-            // Convert the object to an array and sort by total sales
+
+            // Mengonversi objek menjadi array dan mengurutkannya berdasarkan total penjualan building class
             const sortedBuildingClassSales = Object.entries(buildingClassSalesData).sort(([, countA], [, countB]) => countB - countA);
         
-            // Extract the top 5 building class labels and total sales data
+            // Mengambil label kategori kelas bangunan teratas dan data penjualan total
             const topBuildingClasses = sortedBuildingClassSales.slice(0, 10).map(([buildingClass]) => buildingClass);
             const topSales = sortedBuildingClassSales.slice(0, 10).map(([, count]) => count);
         
-            // Create chart using Chart.js
+            // Membuat chart menggunakan chart.js
             var ctx = document.getElementById('best-selling-building-class').getContext('2d');
             if (window.bestSellingBuildingClassChart) {
                 window.bestSellingBuildingClassChart.destroy();
@@ -460,25 +495,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         function createAverageSalesByBuildingClassChart(data) {
-            // Create an object to store total sales and count of sales for each building class category
+            // Membuat objek untuk menyimpan total penjualan dan jumlah penjualan untuk setiap kategori kelas bangunan
             const buildingClassSales = {};
         
-            // Iterate through the data to calculate total sales and count of sales for each building class category
+            // iterasi data untuk menghitung total penjualan dan jumlah penjualan untuk setiap building class category
             data.forEach(entry => {
                 const buildingClass = entry["BUILDING_CLASS_CATEGORY"];
-                const salePrice = parseFloat(entry["SALE_PRICE"]); // Convert SALE_PRICE to a float
+                const salePrice = parseFloat(entry["SALE_PRICE"]); 
         
-                // If the building class category is not yet in the buildingClassSales object, initialize it
+                // inisialisasi building class jika belum ada di objek
                 if (!buildingClassSales[buildingClass]) {
                     buildingClassSales[buildingClass] = { total: 0, count: 0 };
                 }
         
-                // Increment the total sales and count of sales for the building class category
+                // Menambah total penjualan dan jumlah penjualan untuk building class category
                 buildingClassSales[buildingClass].total += salePrice;
                 buildingClassSales[buildingClass].count++;
             });
         
-            // Calculate the average sales for each building class category
+            // Hitung rata-rata penjualan untuk setiap kategori building class
             const averageSalesByBuildingClass = {};
             for (const buildingClass in buildingClassSales) {
                 const totalSales = buildingClassSales[buildingClass].total;
@@ -486,14 +521,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 averageSalesByBuildingClass[buildingClass] = totalSales / countSales;
             }
         
-            // Convert the object to an array of tuples and sort by average sales
+            // Ubah objek menjadi array tuples dan urutkan berdasarkan penjualan rata-rata
             const sortedAverageSales = Object.entries(averageSalesByBuildingClass).sort(([, averageA], [, averageB]) => averageB - averageA);
         
-            // Extract the building class categories and average sales data
+            // Ekstrak building class category dan data penjualan rata-rata
             const buildingClassCategories = sortedAverageSales.slice(0, 5).map(([buildingClass]) => buildingClass);
             const averageSales = sortedAverageSales.slice(0, 5).map(([, average]) => average);
         
-            // Create chart using Chart.js
+            // Membuat chart menggunakan chart.js
             var ctx = document.getElementById('average-sales-by-building-class').getContext('2d');
             if (window.averageSalesByBuildingClassChart) {
                 window.averageSalesByBuildingClassChart.destroy();
@@ -523,35 +558,37 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         function createTotalRevenueByBuildingClassChart(data) {
-            // Initialize an object to store total revenue for each building class category
+
+            // Inisialisasi objek untuk menyimpan total pendapatan untuk setiap kategori kelas bangunan
             const totalRevenueByBuildingClass = {};
         
-            // Loop through the data to calculate total revenue for each building class category
+            // Loop melalui data untuk menghitung total pendapatan untuk setiap kategori kelas bangunan
             data.forEach(entry => {
                 const buildingClass = entry["BUILDING_CLASS_CATEGORY"];
-                const salePrice = parseFloat(entry["SALE_PRICE"]); // Convert SALE_PRICE to a float
+                const salePrice = parseFloat(entry["SALE_PRICE"]); 
         
-                // If the building class already exists in the object, add the sale price to its total revenue
+                // Jika kelas bangunan sudah ada dalam objek, tambahkan harga penjualan ke total pendapatannya
                 if (totalRevenueByBuildingClass[buildingClass]) {
                     totalRevenueByBuildingClass[buildingClass] += salePrice;
                 } 
-                // If the building class doesn't exist, initialize it with the sale price
+                
+                // Jika kelas bangunan belum ada, inisialisasi dengan harga penjualan
                 else {
                     totalRevenueByBuildingClass[buildingClass] = salePrice;
                 }
             });
         
-            // Convert the object to an array of tuples
+            // Mengonversi objek menjadi array tupel
             const totalRevenueArray = Object.entries(totalRevenueByBuildingClass);
         
-            // Sort the array by total revenue in descending order
+            // Mengurutkan array berdasarkan total pendapatan secara menurun
             totalRevenueArray.sort(([, revenueA], [, revenueB]) => revenueB - revenueA);
         
-            // Extract the building class categories and total revenue data
+             // Mendapatkan kategori kelas bangunan dan data total pendapatan
             const buildingClassCategories = totalRevenueArray.slice(0, 10).map(([buildingClass]) => buildingClass);
             const totalRevenue = totalRevenueArray.slice(0, 10).map(([, revenue]) => revenue);
         
-            // Create chart using Chart.js
+            // Membuat chart menggunakan chart.js
             var ctx = document.getElementById('total-revenue-by-building-class').getContext('2d');
             if (window.totalRevenueByBuildingClassChart) {
                 window.totalRevenueByBuildingClassChart.destroy();
@@ -579,9 +616,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             });
-        }                
+        } 
+        
+        // Fungsi untuk membuat grafik penjualan berdasarkan neighborhood
         function createNeighborhoodSalesChart(data) {
-            // Create an object to store sales data for each neighborhood
+            
+            // Membuat objek untuk menyimpan data penjualan untuk setiap neigborhood
             const neighborhoodSalesData = {};
             data.forEach(entry => {
                 const neighborhood = entry["NEIGHBORHOOD"];
@@ -592,14 +632,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         
-            // Convert the object to an array of tuples and sort by sales
+            // Mengonversi objek menjadi array tupel dan mengurutkannya berdasarkan penjualan
             const sortedNeighborhoodSales = Object.entries(neighborhoodSalesData).sort(([, countA], [, countB]) => countB - countA);
         
-            // Extract the top 5 neighborhoods and sales data
+           // Mendapatkan 10 neigborhood teratas dan data penjualan
             const topNeighborhoods = sortedNeighborhoodSales.slice(0, 10).map(([neighborhood]) => neighborhood);
             const topSales = sortedNeighborhoodSales.slice(0, 10).map(([, count]) => count);
         
-            // Create chart using Chart.js
+            // Membuat chart menggunakan chart.js
             var ctx = document.getElementById('neighborhood-sales').getContext('2d');
             if (window.neighborhoodSalesChart) {
                 window.neighborhoodSalesChart.destroy();
@@ -628,26 +668,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
+        
+        // Fungsi untuk membuat grafik rata-rata penjualan berdasarkan neigborhood
         function createAverageSalesByNeighborhoodChart(data) {
-            // Create an object to store total sales and count of sales for each neighborhood
+            
+            // Membuat objek untuk menyimpan total penjualan dan jumlah penjualan untuk setiap neigborhood
             const neighborhoodSales = {};
         
-            // Iterate through the data to calculate total sales and count of sales for each neighborhood
+            // iterasi data untuk menghitung total penjualan dan jumlah penjualan untuk setiap neigborhood
             data.forEach(entry => {
                 const neighborhood = entry["NEIGHBORHOOD"];
-                const salePrice = parseFloat(entry["SALE_PRICE"]); // Convert SALE_PRICE to a float
+                const salePrice = parseFloat(entry["SALE_PRICE"]); 
         
-                // If the neighborhood is not yet in the neighborhoodSales object, initialize it
+                // mengecek apakah neigborhood sudah ada di objek, jika belum ada inisialisasi
                 if (!neighborhoodSales[neighborhood]) {
                     neighborhoodSales[neighborhood] = { total: 0, count: 0 };
                 }
         
-                // Increment the total sales and count of sales for the neighborhood
+                // menambah total penjualan dan chalk penjualan untuk neigborhood
                 neighborhoodSales[neighborhood].total += salePrice;
                 neighborhoodSales[neighborhood].count++;
             });
         
-            // Calculate the average sales for each neighborhood
+            // menghitung rata-rata penjualan untuk setiap neigborhood
             const averageSalesByNeighborhood = {};
             for (const neighborhood in neighborhoodSales) {
                 const totalSales = neighborhoodSales[neighborhood].total;
@@ -655,14 +698,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 averageSalesByNeighborhood[neighborhood] = totalSales / countSales;
             }
         
-            // Convert the object to an array of tuples and sort by average sales
+            // mengurutkan objek berdasarkan penjualan rata-rata
             const sortedAverageSales = Object.entries(averageSalesByNeighborhood).sort(([, averageA], [, averageB]) => averageB - averageA);
         
-            // Extract the top 5 neighborhoods and average sales data
+            // mendapatkan 5 neigborhood teratas dan rata-rata penjualan
             const top5Neighborhoods = sortedAverageSales.slice(0, 5).map(([neighborhood]) => neighborhood);
             const top5AverageSales = sortedAverageSales.slice(0, 5).map(([, average]) => average);
         
-            // Create chart using Chart.js
+            // membuat chart menggunakan chart.js
             var ctx = document.getElementById('average-sales-by-neighborhood').getContext('2d');
             if (window. averageSalesByNeighborhoodChart) {
                 window. averageSalesByNeighborhoodChart.destroy();
@@ -689,37 +732,40 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             });
-        }        
+        }      
+
+        // Fungsi untuk membuat grafik total penjualan berdasarkan neigborhood
         function createTotalRevenueByNeighborhoodChart(data) {
-            // Initialize an object to store total revenue for each neighborhood
+            // Inisialisasi objek untuk menyimpan total pendapatan untuk setiap neigborhood
             const totalRevenueByNeighborhood = {};
-        
-            // Loop through the data to calculate total revenue for each neighborhood
+
+            // Loop melalui data untuk menghitung total pendapatan untuk setiap neigborhood
             data.forEach(entry => {
                 const neighborhood = entry["NEIGHBORHOOD"];
-                const salePrice = parseFloat(entry["SALE_PRICE"]); // Convert SALE_PRICE to a float
+                const salePrice = parseFloat(entry["SALE_PRICE"]); 
         
-                // If the neighborhood already exists in the object, add the sale price to its total revenue
+                 // Jika lingkungan sudah ada dalam objek, tambahkan harga penjualan ke total pendapatannya
                 if (totalRevenueByNeighborhood[neighborhood]) {
                     totalRevenueByNeighborhood[neighborhood] += salePrice;
                 } 
-                // If the neighborhood doesn't exist, initialize it with the sale price
+
+                // Jika lingkungan belum ada, inisialisasi dengan harga penjualan
                 else {
                     totalRevenueByNeighborhood[neighborhood] = salePrice;
                 }
             });
-        
-            // Convert the object to an array of tuples
+            
+            // Mengonversi objek menjadi array tupel
             const totalRevenueArray = Object.entries(totalRevenueByNeighborhood);
         
-            // Sort the array by total revenue in descending order
+            // Mengurutkan array berdasarkan total pendapatan secara menurun
             totalRevenueArray.sort(([, revenueA], [, revenueB]) => revenueB - revenueA);
         
-            // Extract the top 5 neighborhoods and total revenue data
+            // Mendapatkan 10 neigborhood teratas dan total pendapatan  
             const topNeighborhoods = totalRevenueArray.slice(0, 10).map(([neighborhood]) => neighborhood);
             const topTotalRevenue = totalRevenueArray.slice(0, 10).map(([, revenue]) => revenue);
         
-            // Create chart using Chart.js
+            // membuat chart menggunakan chart.js
             var ctx = document.getElementById('total-revenue-by-neighborhood').getContext('2d');
             if (window. totalRevenueByNeighborhoodChart) {
                 window. totalRevenueByNeighborhoodChart.destroy();

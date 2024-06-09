@@ -1,3 +1,4 @@
+/* Mengatur tampilan dan tata letak elemen <body> */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +7,8 @@ body {
     min-height: 100vh;
     background-color: #f5f5f5;
 }
+
+/* Mengatur tampilan dan tata letak elemen header */
 .header {
     width: 100%;
     background-color: #34495e;
@@ -18,25 +21,29 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1000; 
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "logo" di dalam header */
 .header .logo {
     display: flex;
     align-items: center;
 }
 
+/* Mengatur tampilan dan tata letak elemen <img> di dalam kelas "logo" */
 .header .logo img {
     height: 50px;
     border-radius: 50%;
     margin-right: 15px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <nav> di dalam header */
 .header nav {
     display: flex;
-    padding-right: 50px;
+    padding-right: 50px; 
 }
 
+/* Mengatur tampilan dan tata letak elemen <a> di dalam elemen <nav> */
 .header nav a {
     display: flex;
     align-items: center;
@@ -44,21 +51,24 @@ body {
     font-size: 18px;
     color: #ecf0f1;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; 
     margin-left: 15px;
     border-radius: 5px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <i> didalam element <a> yang berada di elemen <nav>*/
 .header nav a i {
     margin-right: 10px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <a> saat hover */
 .header nav a:hover {
     background-color: #2c3e50;
     color: #eabf75;
     cursor: pointer;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "content" */
 .content {
     padding: 100px 40px 20px;
     display: flex;
@@ -68,6 +78,7 @@ body {
     z-index: 1;
 }
 
+/* Mengatur tampilan dan tata letak elemen sebelum elemen "content" */
 .content::before {
     content: "";
     position: absolute;
@@ -82,6 +93,7 @@ body {
     z-index: -1;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "header-content" */
 .header-content {
     background-color: #ecf0f1;
     padding: 20px;
@@ -90,6 +102,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <h1> di dalam kelas "header-content" */
 .header-content h1 {
     margin: 0;
     font-size: 28px;
@@ -97,6 +110,7 @@ body {
     text-align: center;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "card" */
 .card {
     background-color: #fff;
     padding: 20px;
@@ -105,49 +119,57 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.card-sub{
+/* Mengatur tampilan dan tata letak elemen dengan kelas "card-sub" */
+.card-sub {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 
-.cardsub{
-    flex: 0 0 calc(24.5% - 40px); /* Mengatur lebar cardsub agar 4 card dapat muat dalam satu baris */
+/* Mengatur tampilan dan tata letak elemen dengan kelas "cardsub" */
+.cardsub {
+    flex: 0 0 calc(24.5% - 40px); 
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center; /* Pusatkan konten secara horizontal */
+    text-align: center;
     margin-bottom: 20px;
 }
+
+/* Mengatur tampilan dan tata letak elemen dengan kelas "cardsub" saat hover */
 .cardsub:hover {
     transform: translateY(-5px);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
+/* Mengatur tampilan dan tata letak elemen <h3> di dalam kelas "cardsub" */
 .cardsub h3 {
     margin-top: 0;
     color: #34495e;
 }
 
+/* Mengatur tampilan dan tata letak elemen <h4> di dalam kelas "cardsub" */
 .cardsub h4 {
     margin: 0;
     color: #6c757d;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "card" saat hover */
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
+/* Mengatur tampilan dan tata letak elemen <h2> di dalam kelas "card" */
 .card h2 {
     margin-top: 0;
     color: #34495e;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "cardtable" */
 .cardtable {
     border: none;
     border-radius: 5px;
@@ -155,16 +177,19 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "cardtable" saat hover */
 .cardtable:hover {
     transform: translateY(-5px);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "table-wrapper" */
 .table-wrapper {
-    overflow-x: auto;
+    overflow-x: auto; 
     border-radius: 5px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <table> */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -173,27 +198,32 @@ table {
     overflow: hidden;
 }
 
+/* Mengatur tampilan dan tata letak elemen <th> dan <td> di dalam tabel */
 table, th, td {
     border: 1px solid #ddd;
 }
 
+/* Mengatur tampilan dan tata letak elemen <th> dan <td> */
 th, td {
     padding: 12px;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; 
 }
 
+/* Mengatur tampilan dan tata letak elemen <th> */
 th {
     background-color: #2c3e50;
     color: #ecf0f1;
 }
 
+/* Mengatur tampilan dan tata letak baris genap */
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+/* Mengatur tampilan dan tata letak elemen baris saat hover */
 tr:hover {
     background-color: #3498db79;
     color: #ffffff;
@@ -201,12 +231,14 @@ tr:hover {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Mengatur tampilan dan tata letak elemen <td> saat hover */
 td:hover {
     background-color: #297fb99c;
     color: #ffffff;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "pagination" */
 .pagination {
     display: flex;
     align-items: center;
@@ -214,6 +246,7 @@ td:hover {
     margin: 20px 0;
 }
 
+/* Mengatur tampilan dan tata letak elemen <button> di dalam kelas "pagination" */
 .pagination button {
     padding: 10px 15px;
     margin: 0 5px;
@@ -225,22 +258,26 @@ td:hover {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+/* Mengatur tampilan dan tata letak elemen <button> saat hover */
 .pagination button:hover {
     background-color: #2980b9;
     transform: translateY(-2px);
 }
 
+/* Mengatur tampilan dan tata letak elemen <button> yang tidak aktif */
 .pagination button.disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
 }
 
+/* Mengatur tampilan dan tata letak elemen dengan ID "page-info" di dalam kelas "pagination" */
 .pagination #page-info {
     margin: 0 10px;
     font-size: 16px;
     color: #34495e;
 }
 
+/* Mengatur tampilan dan tata letak elemen <select> di dalam kelas "pagination" */
 .pagination select {
     padding: 5px 10px;
     margin: 0 5px;
@@ -251,43 +288,77 @@ td:hover {
     cursor: pointer;
 }
 
+/* Mengatur tampilan dan tata letak elemen <footer> */
 footer {
     background-color: #34495e;
     color: #ecf0f1;
     text-align: center;
     padding: 20px 0;
     width: 100%;
-    margin-top: auto;
+    margin-top: auto; 
 }
-/* CSS utama */
 
-/* Media queries untuk mode potret */
+/* Media queries untuk mode potrait */
 @media only screen and (max-width: 600px) {
     .header nav {
-        padding-right: 0; /* Menghapus padding kanan pada navigasi */
+        padding-right: 40px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header nav a {
+        width: 100%;
+        padding: 10px 0;
+        margin-left: 0;
     }
     .content {
-        padding: 100px 20px 20px; /* Menyesuaikan padding pada konten */
+        padding: 100px 20px 20px;
     }
     .header-content {
-        margin-bottom: 10px; /* Mengurangi margin bawah pada header-content */
+        margin-bottom: 10px;
     }
     .card, .cardtable {
-        padding: 15px; /* Mengurangi padding pada card dan cardtable */
+        padding: 15px;
+    }
+    .filter-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-container label, .filter-dropdown, .button-icon {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .filter-dropdown, .button-icon {
+        margin-right: 0;
+    }
+    .cardsub {
+        flex: 0 0 100%;
+        margin-bottom: 15px;
+    }
+    .card-sub {
+        flex-direction: column;
     }
 }
 
-/* Media queries untuk mode lanskap */
+/* Media queries untuk mode landscape */
 @media only screen and (min-width: 601px) {
+    .header nav {
+        flex-direction: row;
+        align-items: center;
+    }
+    .header nav a {
+        width: auto;
+        padding: 10px 15px;
+        margin-left: 15px;
+    }
     .content {
-        padding: 100px 40px 20px; /* Mengembalikan padding pada konten untuk mode lanskap */
+        padding: 100px 40px 20px;
     }
     .header-content {
-        margin-bottom: 20px; /* Mengembalikan margin bawah pada header-content untuk mode lanskap */
+        margin-bottom: 20px;
     }
 }
-/* CSS sebelumnya tetap ada */
 
+/* Mengatur tampilan dan tata letak elemen dengan kelas "button-icon" */
 .button-icon {
     padding: 5px;
     margin-left: 5px;
@@ -300,52 +371,54 @@ footer {
     font-size: 14px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <i> di dalam kelas "button-icon" */
 .button-icon i {
     font-size: 16px;
 }
 
+/* Mengatur tampilan dan tata letak elemen <button> dengan kelas "button-icon" saat hover */
 .button-icon:hover {
     background-color: #2980b9;
 }
 
+/* Mengatur tampilan tombol yang dinonaktifkan dengan latar belakang abu-abu dan kursor "not-allowed" */
 .button-icon.disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
 }
 
-#year-built-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.header-text {
+/* Menggunakan flexbox untuk tata letak, dengan elemen yang dipisahkan dan diselaraskan di tengah */
+#year-built-header, .header-text {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Menambahkan margin kanan untuk memberi jarak antara elemen dalam header-text */
 .header-text span {
-    margin-right: 10px; /* Jarak antara teks dan tombol */
+    margin-right: 10px;
 }
 
+/* Menyusun elemen dalam grup tombol dengan flexbox, menyelaraskan di tengah, dan mencegah pengecilan elemen */
 .button-group {
     display: flex;
+    align-items: center;
     flex-shrink: 0;
 }
 
-
-.button-group {
-    display: flex;
-    flex-shrink: 0;
-}
-/* Gaya tambahan untuk filter dan tombol reset */
+/* Menyusun elemen dalam kontainer filter dengan flexbox, menambahkan padding, membulatkan sudut, dan menambahkan bayangan untuk efek 3D */
 .filter-container {
     display: flex;
     z-index: 1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-.filter-dropdown {/* Sembunyikan dropdown dan tombol reset secara default */
-    padding: 12px 20px; /* Menambahkan padding pada atas dan bawah */
+/* Mengatur tampilan dropdown filter dengan padding, warna latar belakang, warna teks, tanpa border, sudut membulat, dan kursor pointer, serta menambahkan transisi untuk efek hover */
+.filter-dropdown {
+    padding: 12px 20px;
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -356,30 +429,21 @@ footer {
     margin-right: 10px;
 }
 
-
-.filter-button {
-    padding: 12px 20px; /* Menambahkan padding pada atas dan bawah */
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-bottom: 20px;
-}
-
-.filter-dropdown:hover{
+/* Mengubah tampilan dropdown filter saat hover dengan warna latar belakang baru dan sedikit menggeser ke atas */
+.filter-dropdown:hover {
     background-color: #2980b9;
     transform: translateY(-2px);
 }
+
+/* Mengubah tampilan tombol filter saat hover dengan warna latar belakang baru dan sedikit menggeser ke atas */
 .filter-button:hover {
-    background-color:  #bf2b1b;
+    background-color: #bf2b1b;
     transform: translateY(-2px);
 }
 
-/* Gaya tambahan untuk label filter */
+/* Mengatur tampilan label dalam kontainer filter dengan padding, warna latar belakang, warna teks, sudut membulat, kursor pointer, dan transisi untuk efek hover */
 .filter-container label {
-    padding: 12px 20px; /* Menambahkan padding pada atas dan bawah */
+    padding: 12px 20px;
     background-color: #3498db;
     color: #fff;
     border-radius: 5px;
@@ -387,18 +451,7 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-/* Efek hover pada label filter */
+/* Mengubah tampilan label saat hover dengan warna latar belakang baru */
 .filter-container label:hover {
     background-color: #2980b9;
-}
-
-/* Penyesuaian untuk ikon pada tombol filter dan reset */
-.button-icon i {
-    font-size: 16px;
-}
-
-/* Gaya tambahan untuk grup tombol */
-.button-group {
-    display: flex;
-    align-items: center;
 }
